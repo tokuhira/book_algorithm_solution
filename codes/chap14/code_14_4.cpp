@@ -3,20 +3,20 @@
 #include <queue>
 using namespace std;
 
-// Ìµ¸ÂÂç¤òÉ½¤¹ÃÍ (¤³¤³¤Ç¤Ï 2^60 ¤È¤¹¤ë)
+// ç„¡é™å¤§ã‚’è¡¨ã™å€¤ (ã“ã“ã§ã¯ 2^60 ã¨ã™ã‚‹)
 const long long INF = 1LL << 60;
 
-// ÊÕ¤òÉ½¤¹·¿¡¤¤³¤³¤Ç¤Ï½Å¤ß¤òÉ½¤¹·¿¤ò long long ·¿¤È¤·¤Ş¤¹
+// è¾ºã‚’è¡¨ã™å‹ï¼Œã“ã“ã§ã¯é‡ã¿ã‚’è¡¨ã™å‹ã‚’ long long å‹ã¨ã—ã¾ã™
 struct Edge {
-    int to; // ÎÙÀÜÄºÅÀÈÖ¹æ
-    long long w; // ½Å¤ß
+    int to; // éš£æ¥é ‚ç‚¹ç•ªå·
+    long long w; // é‡ã¿
     Edge(int to, long long w) : to(to), w(w) {}
 };
 
-// ½Å¤ßÉÕ¤­¥°¥é¥Õ¤òÉ½¤¹·¿
+// é‡ã¿ä»˜ãã‚°ãƒ©ãƒ•ã‚’è¡¨ã™å‹
 using Graph = vector<vector<Edge>>;
 
-// ´ËÏÂ¤ò¼Â»Ü¤¹¤ë´Ø¿ô
+// ç·©å’Œã‚’å®Ÿæ–½ã™ã‚‹é–¢æ•°
 template<class T> bool chmin(T& a, T b) {
     if (a > b) {
         a = b;
@@ -26,11 +26,11 @@ template<class T> bool chmin(T& a, T b) {
 }
 
 int main() {
-    // ÄºÅÀ¿ô¡¤ÊÕ¿ô¡¤»ÏÅÀ
+    // é ‚ç‚¹æ•°ï¼Œè¾ºæ•°ï¼Œå§‹ç‚¹
     int N, M, s;
     cin >> N >> M >> s;
 
-    // ¥°¥é¥Õ
+    // ã‚°ãƒ©ãƒ•
     Graph G(N);
     for (int i = 0; i < M; ++i) {
         int a, b, w;
@@ -38,37 +38,37 @@ int main() {
         G[a].push_back(Edge(b, w));
     }
 
-    // ¥À¥¤¥¯¥¹¥È¥éË¡
+    // ãƒ€ã‚¤ã‚¯ã‚¹ãƒˆãƒ©æ³•
     vector<long long> dist(N, INF);
     dist[s] = 0;
 
-    // (d[v], v) ¤Î¥Ú¥¢¤òÍ×ÁÇ¤È¤·¤¿¥Ò¡¼¥×¤òºî¤ë
+    // (d[v], v) ã®ãƒšã‚¢ã‚’è¦ç´ ã¨ã—ãŸãƒ’ãƒ¼ãƒ—ã‚’ä½œã‚‹
     priority_queue<pair<long long, int>,
                    vector<pair<long long, int>>,
                    greater<pair<long long, int>>> que;
     que.push(make_pair(dist[s], s));
 
-    // ¥À¥¤¥¯¥¹¥È¥éË¡¤ÎÈ¿Éü¤ò³«»Ï
+    // ãƒ€ã‚¤ã‚¯ã‚¹ãƒˆãƒ©æ³•ã®åå¾©ã‚’é–‹å§‹
     while (!que.empty()) {
-        // v: »ÈÍÑºÑ¤ß¤Ç¤Ê¤¤ÄºÅÀ¤Î¤¦¤Á d[v] ¤¬ºÇ¾®¤ÎÄºÅÀ
-        // d: v ¤ËÂĞ¤¹¤ë¥­¡¼ÃÍ
+        // v: ä½¿ç”¨æ¸ˆã¿ã§ãªã„é ‚ç‚¹ã®ã†ã¡ d[v] ãŒæœ€å°ã®é ‚ç‚¹
+        // d: v ã«å¯¾ã™ã‚‹ã‚­ãƒ¼å€¤
         int v = que.top().second;
         long long d = que.top().first;
         que.pop();
 
-        // d > dist[v] ¤Ï¡¤(d, v) ¤¬¥´¥ß¤Ç¤¢¤ë¤³¤È¤ò°ÕÌ£¤¹¤ë
+        // d > dist[v] ã¯ï¼Œ(d, v) ãŒã‚´ãƒŸã§ã‚ã‚‹ã“ã¨ã‚’æ„å‘³ã™ã‚‹
         if (d > dist[v]) continue; 
 
-        // ÄºÅÀ v ¤ò»ÏÅÀ¤È¤·¤¿³ÆÊÕ¤ò´ËÏÂ
+        // é ‚ç‚¹ v ã‚’å§‹ç‚¹ã¨ã—ãŸå„è¾ºã‚’ç·©å’Œ
         for (auto e : G[v]) {
             if (chmin(dist[e.to], dist[v] + e.w)) {
-                // ¹¹¿·¤¬¤¢¤ë¤Ê¤é¥Ò¡¼¥×¤Ë¿·¤¿¤ËÁŞÆş
+                // æ›´æ–°ãŒã‚ã‚‹ãªã‚‰ãƒ’ãƒ¼ãƒ—ã«æ–°ãŸã«æŒ¿å…¥
                 que.push(make_pair(dist[e.to], e.to)); 
             }
         }
     }
     
-    // ·ë²Ì½ĞÎÏ
+    // çµæœå‡ºåŠ›
     for (int v = 0; v < N; ++v) {
         if (dist[v] < INF) cout << dist[v] << endl;
         else cout << "INF" << endl;

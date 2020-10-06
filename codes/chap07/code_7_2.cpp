@@ -4,30 +4,30 @@
 #include <functional>
 using namespace std;
 
-// ¶è´Ö¤ò pair<int,int> ¤ÇÉ½¤¹
+// åŒºé–“ã‚’ pair<int,int> ã§è¡¨ã™
 typedef pair<int,int> Interval;
 
-// ¶è´Ö¤ò½ªÃ¼»ş¹ï¤ÇÂç¾®Èæ³Ó¤¹¤ë´Ø¿ô
+// åŒºé–“ã‚’çµ‚ç«¯æ™‚åˆ»ã§å¤§å°æ¯”è¼ƒã™ã‚‹é–¢æ•°
 bool cmp(const Interval &a, const Interval &b) {
     return a.second < b.second;
 }
 
 int main() {
-    // ÆşÎÏ
+    // å…¥åŠ›
     int N;
     cin >> N;
     vector<Interval> inter(N);
     for (int i = 0; i < N; ++i)
         cin >> inter[i].first >> inter[i].second;
 
-    // ½ªÃ¼»ş¹ï¤¬Áá¤¤½ç¤Ë¥½¡¼¥È¤¹¤ë
+    // çµ‚ç«¯æ™‚åˆ»ãŒæ—©ã„é †ã«ã‚½ãƒ¼ãƒˆã™ã‚‹
     sort(inter.begin(), inter.end(), cmp);
 
-    // ìÅÍß¤ËÁª¤Ö
+    // è²ªæ¬²ã«é¸ã¶
     int res = 0;
     int current_end_time = 0;
     for (int i = 0; i < N; ++i) {
-        // ºÇ¸å¤ËÁª¤ó¤À¶è´Ö¤ÈÈï¤ë¤Î¤Ï½ü¤¯
+        // æœ€å¾Œã«é¸ã‚“ã åŒºé–“ã¨è¢«ã‚‹ã®ã¯é™¤ã
         if (inter[i].first < current_end_time) continue;
 
         ++res;

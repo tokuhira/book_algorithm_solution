@@ -9,30 +9,30 @@ template<class T> void chmax(T& a, T b) {
 }
 
 int main() {
-    // ÆşÎÏ
+    // å…¥åŠ›
     int N;
     long long W;
     cin >> N >> W;
     vector<long long> weight(N), value(N);
     for (int i = 0; i < N; ++i) cin >> weight[i] >> value[i];
 
-    // DP ¥Æ¡¼¥Ö¥ëÄêµÁ
+    // DP ãƒ†ãƒ¼ãƒ–ãƒ«å®šç¾©
     vector<vector<long long>> dp(N + 1, vector<long long>(W + 1, 0));
 
-    // DP¥ë¡¼¥×
+    // DPãƒ«ãƒ¼ãƒ—
     for (int i = 0; i < N; ++i) {
         for (int w = 0; w <= W; ++w) {
 
-            // i ÈÖÌÜ¤ÎÉÊÊª¤òÁª¤Ö¾ì¹ç
+            // i ç•ªç›®ã®å“ç‰©ã‚’é¸ã¶å ´åˆ
             if (w - weight[i] >= 0) {
                 chmax(dp[i + 1][w], dp[i][w - weight[i]] + value[i]);
             }
 
-            // i ÈÖÌÜ¤ÎÉÊÊª¤òÁª¤Ğ¤Ê¤¤¾ì¹ç
+            // i ç•ªç›®ã®å“ç‰©ã‚’é¸ã°ãªã„å ´åˆ
             chmax(dp[i + 1][w], dp[i][w]);
         }
     }
 
-    // ºÇÅ¬ÃÍ¤Î½ĞÎÏ
+    // æœ€é©å€¤ã®å‡ºåŠ›
     cout << dp[N][W] << endl;
 }

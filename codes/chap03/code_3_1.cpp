@@ -3,21 +3,21 @@
 using namespace std;
 
 int main() {
-    // ÆşÎÏ¤ò¼õ¤±¼è¤ë
+    // å…¥åŠ›ã‚’å—ã‘å–ã‚‹
     int N, v;
     cin >> N >> v;
     vector<int> a(N);
     for (int i = 0; i < N; ++i) cin >> a[i];
     
-    // Àş·ÁÃµº÷
-    bool exist = false;   // ½é´üÃÍ¤Ï false ¤Ë
+    // ç·šå½¢æ¢ç´¢
+    bool exist = false;   // åˆæœŸå€¤ã¯ false ã«
     for (int i = 0; i < N; ++i) {
         if (a[i] == v) {
-            exist = true;  // ¸«¤Ä¤«¤Ã¤¿¤é¥Õ¥é¥°¤òÎ©¤Æ¤ë
+            exist = true;  // è¦‹ã¤ã‹ã£ãŸã‚‰ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
         }
     }
     
-    // ·ë²Ì½ĞÎÏ
+    // çµæœå‡ºåŠ›
     if (exist) cout << "Yes" << endl;
     else cout << "No" << endl;
 }

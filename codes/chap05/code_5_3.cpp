@@ -8,21 +8,21 @@ template<class T> void chmin(T& a, T b) {
     }
 }
 
-const long long INF = 1LL << 60; // ½½Ê¬Âç¤­¤¤ÃÍ¤È¤¹¤ë (¤³¤³¤Ç¤Ï 2^60)
+const long long INF = 1LL << 60; // ååˆ†å¤§ãã„å€¤ã¨ã™ã‚‹ (ã“ã“ã§ã¯ 2^60)
 
 int main() {
-    // ÆşÎÏ
+    // å…¥åŠ›
     int N; cin >> N;
     vector<long long> h(N);
     for (int i = 0; i < N; ++i) cin >> h[i];
 
-    // ½é´ü²½ (ºÇ¾®²½ÌäÂê¤Ê¤Î¤Ç INF ¤Ë½é´ü²½)
+    // åˆæœŸåŒ– (æœ€å°åŒ–å•é¡Œãªã®ã§ INF ã«åˆæœŸåŒ–)
     vector<long long> dp(N, INF);
 
-    // ½é´ü¾ò·ï
+    // åˆæœŸæ¡ä»¶
     dp[0] = 0;
 
-    // ¥ë¡¼¥×
+    // ãƒ«ãƒ¼ãƒ—
     for (int i = 1; i < N; ++i) {
         chmin(dp[i], dp[i - 1] + abs(h[i] - h[i - 1]));
         if (i > 1) {
@@ -30,6 +30,6 @@ int main() {
         }
     }
 
-    // Åú¤¨
+    // ç­”ãˆ
     cout << dp[N - 1] << endl;
 }

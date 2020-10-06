@@ -7,6 +7,6 @@ int main() {
     F[0] = 0, F[1] = 1;
     for (int N = 2; N < 50; ++N) {
         F[N] = F[N - 1] + F[N - 2];
-        cout << N << " ¹àÌÜ: " << F[N] << endl;
+        cout << N << " é …ç›®: " << F[N] << endl;
     }
 }

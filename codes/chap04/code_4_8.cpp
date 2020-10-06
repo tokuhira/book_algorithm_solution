@@ -2,30 +2,30 @@
 #include <vector>
 using namespace std;
 
-// fibo(N) ¤ÎÅú¤¨¤ò¥á¥â²½¤¹¤ëÇÛÎó
+// fibo(N) ã®ç­”ãˆã‚’ãƒ¡ãƒ¢åŒ–ã™ã‚‹é…åˆ—
 vector<long long> memo;
 
 long long fibo(int N) {
-    // ¥Ù¡¼¥¹¥±¡¼¥¹
+    // ãƒ™ãƒ¼ã‚¹ã‚±ãƒ¼ã‚¹
     if (N == 0) return 0;
     else if (N == 1) return 1;
 
-    // ¥á¥â¤ò¥Á¥§¥Ã¥¯ (¤¹¤Ç¤Ë·×»»ºÑ¤ß¤Ê¤é¤ÐÅú¤¨¤ò¥ê¥¿¡¼¥ó¤¹¤ë)
+    // ãƒ¡ãƒ¢ã‚’ãƒã‚§ãƒƒã‚¯ (ã™ã§ã«è¨ˆç®—æ¸ˆã¿ãªã‚‰ã°ç­”ãˆã‚’ãƒªã‚¿ãƒ¼ãƒ³ã™ã‚‹)
     if (memo[N] != -1) return memo[N];
 
-    // Åú¤¨¤ò¥á¥â²½¤·¤Ê¤¬¤é¡¤ºÆµ¢¸Æ¤Ó½Ð¤·
+    // ç­”ãˆã‚’ãƒ¡ãƒ¢åŒ–ã—ãªãŒã‚‰ï¼Œå†å¸°å‘¼ã³å‡ºã—
     return memo[N] = fibo(N - 1) + fibo(N - 2);
 }
 
 int main() {
-    // ¥á¥â²½ÍÑÇÛÎó¤ò -1 ¤Ç½é´ü²½¤¹¤ë
+    // ãƒ¡ãƒ¢åŒ–ç”¨é…åˆ—ã‚’ -1 ã§åˆæœŸåŒ–ã™ã‚‹
     memo.assign(50, -1);
 
-    // fibo(49) ¤ò¤è¤Ó¤À¤¹
+    // fibo(49) ã‚’ã‚ˆã³ã ã™
     fibo(49);
 
-    // memo[0], ..., memo[49] ¤ËÅú¤¨¤¬³ÊÇ¼¤µ¤ì¤Æ¤¤¤ë
+    // memo[0], ..., memo[49] ã«ç­”ãˆãŒæ ¼ç´ã•ã‚Œã¦ã„ã‚‹
     for (int N = 2; N < 50; ++N) {
-        cout << N << " ¹àÌÜ: " << memo[N] << endl;
+        cout << N << " é …ç›®: " << memo[N] << endl;
     }
 }

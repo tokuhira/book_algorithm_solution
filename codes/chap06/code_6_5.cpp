@@ -2,32 +2,32 @@
 #include <algorithm>
 #include <vector>
 using namespace std;
-const long long INF = 1LL << 60; // ½½Ê¬Âç¤­¤¤ÃÍ¤ò 1 ¤Ä·è¤á¤ë
+const long long INF = 1LL << 60; // ååˆ†å¤§ãã„å€¤ã‚’ 1 ã¤æ±ºã‚ã‚‹
 
 int main() {
-    // ÆşÎÏ
+    // å…¥åŠ›
     int N;
     cin >> N;
     vector<long long> h(N), s(N);
     for (int i = 0; i < N; i++) cin >> h[i] >> s[i];
 
-    // ÆóÊ¬Ãµº÷
+    // äºŒåˆ†æ¢ç´¢
     long long left = 0, right = INF;
     while (right - left > 1) {
         long long mid = (left + right) / 2;
         
-        // È½Äê
+        // åˆ¤å®š
         bool ok = true;
-        vector<long long> t(N, 0); // ³ÆÉ÷Á¥¤ò³ä¤ë¤Ş¤Ç¤ÎÀ©¸Â»ş´Ö
+        vector<long long> t(N, 0); // å„é¢¨èˆ¹ã‚’å‰²ã‚‹ã¾ã§ã®åˆ¶é™æ™‚é–“
         for (int i = 0; i < N; ++i) {
-            // ¤½¤â¤½¤â mid ¤¬½é´ü¹âÅÙ¤è¤êÄã¤«¤Ã¤¿¤éfalse
+            // ãã‚‚ãã‚‚ mid ãŒåˆæœŸé«˜åº¦ã‚ˆã‚Šä½ã‹ã£ãŸã‚‰false
             if (mid < h[i]) ok = false; 
             else t[i] = (mid - h[i]) / s[i];
         }
-        // »ş´ÖÀ©¸Â¤¬¤µ¤·Ç÷¤Ã¤Æ¤¤¤ë½ç¤Ë¥½¡¼¥È
+        // æ™‚é–“åˆ¶é™ãŒã•ã—è¿«ã£ã¦ã„ã‚‹é †ã«ã‚½ãƒ¼ãƒˆ
         sort(t.begin(), t.end()); 
         for (int i = 0; i < N; ++i) {
-            if (t[i] < i) ok = false; // »ş´ÖÀÚ¤ìÈ¯À¸
+            if (t[i] < i) ok = false; // æ™‚é–“åˆ‡ã‚Œç™ºç”Ÿ
         }
 
         if (ok) right = mid;

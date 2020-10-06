@@ -3,32 +3,32 @@
 using namespace std;
 using Graph = vector<vector<int>>;
 
-// ÌÚ¾å¤ÎÃµº÷
+// æœ¨ä¸Šã®æ¢ç´¢
 vector<int> depth;
 vector<int> subtree_size;
 void dfs(const Graph &G, int v, int p = -1, int d = 0) {
     depth[v] = d;
     for (auto c : G[v]) {
-        if (c == p) continue; // Ãµº÷¤¬¿ÆÊı¸ş¤ØµÕÎ®¤¹¤ë¤Î¤òËÉ¤°
+        if (c == p) continue; // æ¢ç´¢ãŒè¦ªæ–¹å‘ã¸é€†æµã™ã‚‹ã®ã‚’é˜²ã
         dfs(G, c, v, d + 1);
     }
 
-    // µ¢¤ê¤¬¤±»ş¤Ë¡¢ÉôÊ¬ÌÚ¥µ¥¤¥º¤òµá¤á¤ë
-    subtree_size[v] = 1; // ¼«Ê¬¼«¿È
+    // å¸°ã‚ŠãŒã‘æ™‚ã«ã€éƒ¨åˆ†æœ¨ã‚µã‚¤ã‚ºã‚’æ±‚ã‚ã‚‹
+    subtree_size[v] = 1; // è‡ªåˆ†è‡ªèº«
     for (auto c : G[v]) {
         if (c == p) continue;
 
-        // »ÒÄºÅÀ¤òº¬¤È¤¹¤ëÉôÊ¬¤­¤Î¥µ¥¤¥º¤ò²Ã»»¤¹¤ë
+        // å­é ‚ç‚¹ã‚’æ ¹ã¨ã™ã‚‹éƒ¨åˆ†ãã®ã‚µã‚¤ã‚ºã‚’åŠ ç®—ã™ã‚‹
         subtree_size[v] += subtree_size[c]; 
     }
 }
 
 int main() {
-    // ÄºÅÀ¿ô (ÌÚ¤Ê¤Î¤ÇÊÕ¿ô¤Ï N - 1 ¤Ç³ÎÄê)
+    // é ‚ç‚¹æ•° (æœ¨ãªã®ã§è¾ºæ•°ã¯ N - 1 ã§ç¢ºå®š)
     int N; 
     cin >> N;
 
-    // ¥°¥é¥ÕÆşÎÏ¼õ¼è
+    // ã‚°ãƒ©ãƒ•å…¥åŠ›å—å–
     Graph G(N);
     for (int i = 0; i < N - 1; ++i) {
         int a, b;
@@ -37,13 +37,13 @@ int main() {
         G[b].push_back(a);
     }
 
-    // Ãµº÷
-    int root = 0; // ²¾¤ËÄºÅÀ 0 ¤òº¬¤È¤¹¤ë
+    // æ¢ç´¢
+    int root = 0; // ä»®ã«é ‚ç‚¹ 0 ã‚’æ ¹ã¨ã™ã‚‹
     depth.assign(N, 0);
     subtree_size.assign(N, 0);
     dfs(G, root);
 
-    // ·ë²Ì
+    // çµæœ
     for (int v = 0; v < N; ++v) {
         cout << v << ": depth = " << depth[v]
         << ", subtree_size = " << subtree_size[v] << endl;

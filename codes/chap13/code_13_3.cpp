@@ -4,28 +4,28 @@
 using namespace std;
 using Graph = vector<vector<int>>;
 
-// ����: ����� G �ȡ�õ���λ��� s
-// ����: s �����ĺ���ؤκ�ûϩĹ��ɽ������
+// 入力: グラフ G と，探索の始点 s
+// 出力: s から各頂点への最短路長を表す配列
 vector<int> BFS(const Graph &G, int s) {
-    int N = (int)G.size(); // ĺ����
-    vector<int> dist(N, -1); // ��ĺ�����̤ˬ��פ˽����
+    int N = (int)G.size(); // 頂点数
+    vector<int> dist(N, -1); // 全頂点を「未訪問」に初期化
     queue<int> que;
 
-    // ������ (ĺ�� 0 ����ĺ���Ȥ���)
+    // 初期条件 (頂点 0 を初期頂点とする)
     dist[0] = 0;
-    que.push(0); // 0 ������ĺ���ˤ���
+    que.push(0); // 0 を橙色頂点にする
 
-    // BFS ���� (���塼�����ˤʤ�ޤ�õ����Ԥ�)
+    // BFS 開始 (キューが空になるまで探索を行う)
     while (!que.empty()) {
-        int v = que.front(); // ���塼������Ƭĺ������Ф�
+        int v = que.front(); // キューから先頭頂点を取り出す
         que.pop();
 
-        // v ���餿�ɤ��ĺ���򤹤٤�Ĵ�٤�
+        // v からたどれる頂点をすべて調べる
         for (int x : G[v]) {
-            // ���Ǥ�ȯ���Ѥߤ�ĺ����õ�����ʤ�
+            // すでに発見済みの頂点は探索しない
             if (dist[x] != -1) continue; 
 
-            // ��������ĺ�� x �ˤĤ��Ƶ�Υ����򹹿����ƥ��塼������
+            // 新たな白色頂点 x について距離情報を更新してキューに挿入
             dist[x] = dist[v] + 1;
             que.push(x);
         }
@@ -34,11 +34,11 @@ vector<int> BFS(const Graph &G, int s) {
 }
 
 int main() {
-    // ĺ�������տ�
+    // 頂点数と辺数
     int N, M;
     cin >> N >> M;
 
-    // ��������ϼ��� (�����Ǥ�̵������դ�����)
+    // グラフ入力受取 (ここでは無向グラフを想定)
     Graph G(N);
     for (int i = 0; i < M; ++i) {
         int a, b;
@@ -47,9 +47,9 @@ int main() {
         G[b].push_back(a);
     }
 
-    // ĺ�� 0 ������Ȥ��� BFS
+    // 頂点 0 を始点とした BFS
     vector<int> dist = BFS(G, 0);
 
-    // ��̽��� (��ĺ����ĺ�� 0 ����ε�Υ�򸫤�)
+    // 結果出力 (各頂点の頂点 0 からの距離を見る)
     for (int v = 0; v < N; ++v) cout << v << ": " << dist[v] << endl;
 }

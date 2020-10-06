@@ -4,18 +4,18 @@ using namespace std;
 using Graph = vector<vector<int>>;
 
 int main() {
-    // ÄºÅÀ¿ô¤ÈÊÕ¿ô
+    // é ‚ç‚¹æ•°ã¨è¾ºæ•°
     int N, M;
     cin >> N >> M;
 
-    // ¥°¥é¥Õ
+    // ã‚°ãƒ©ãƒ•
     Graph G(N);
     for (int i = 0; i < M; ++i) {
         int a, b;
         cin >> a >> b;
         G[a].push_back(b);
 
-        // Ìµ¸ş¥°¥é¥Õ¤Î¾ì¹ç¤Ï°Ê²¼¤òÄÉ²Ã
+        // ç„¡å‘ã‚°ãƒ©ãƒ•ã®å ´åˆã¯ä»¥ä¸‹ã‚’è¿½åŠ 
         // G[b].push_back(a);
     }
 }

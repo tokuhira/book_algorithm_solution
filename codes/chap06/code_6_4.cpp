@@ -1,36 +1,36 @@
 #include <iostream>
 #include <vector>
-#include <algorithm> // sort() ¤ä lower_bound() ¤ËÉ¬Í×¤Ç¤¹
+#include <algorithm> // sort() ã‚„ lower_bound() ã«å¿…è¦ã§ã™
 using namespace std;
-const int INF = 20000000; // ½½Ê¬Âç¤­¤ÊÃÍ¤Ë
+const int INF = 20000000; // ååˆ†å¤§ããªå€¤ã«
 
 int main() {
-    // ÆşÎÏ¤ò¼õ¤±¼è¤ë
+    // å…¥åŠ›ã‚’å—ã‘å–ã‚‹
     int N, K;
     cin >> N >> K;
     vector<int> a(N), b(N);
     for (int i = 0; i < N; ++i) cin >> a[i];
     for (int i = 0; i < N; ++i) cin >> b[i];
 
-    // »ÃÄêºÇ¾®ÃÍ¤ò³ÊÇ¼¤¹¤ëÊÑ¿ô
+    // æš«å®šæœ€å°å€¤ã‚’æ ¼ç´ã™ã‚‹å¤‰æ•°
     int min_value = INF;
 
-    // b ¤ò¥½¡¼¥È
+    // b ã‚’ã‚½ãƒ¼ãƒˆ
     sort(b.begin(), b.end());
 
-    // b ¤ËÌµ¸ÂÂç¤òÉ½¤¹ÃÍ (INF) ¤òÄÉ²Ã¤·¤Æ¤ª¤¯
-    // ¤³¤ì¤ò¹Ô¤¦¤³¤È¤Ç¡¢iter = b.end() ¤È¤Ê¤ë²ÄÇ½À­¤ò½ü³°¤¹¤ë
+    // b ã«ç„¡é™å¤§ã‚’è¡¨ã™å€¤ (INF) ã‚’è¿½åŠ ã—ã¦ãŠã
+    // ã“ã‚Œã‚’è¡Œã†ã“ã¨ã§ã€iter = b.end() ã¨ãªã‚‹å¯èƒ½æ€§ã‚’é™¤å¤–ã™ã‚‹
     b.push_back(INF);
 
-    // a ¤ò¸ÇÄê¤·¤Æ²ò¤¯
+    // a ã‚’å›ºå®šã—ã¦è§£ã
     for (int i = 0; i < N; ++i) {
-        // b ¤ÎÃæ¤Ç K - a[i] °Ê¾å¤ÎÈÏ°Ï¤Ç¤ÎºÇ¾®ÃÍ¤ò¼¨¤¹¥¤¥Æ¥ì¡¼¥¿
+        // b ã®ä¸­ã§ K - a[i] ä»¥ä¸Šã®ç¯„å›²ã§ã®æœ€å°å€¤ã‚’ç¤ºã™ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿
         auto iter = lower_bound(b.begin(), b.end(), K - a[i]);
 
-        // ¥¤¥Æ¥ì¡¼¥¿¤Î¼¨¤¹ÃÍ¤ò¼è¤ê½Ğ¤¹
+        // ã‚¤ãƒ†ãƒ¬ãƒ¼ã‚¿ã®ç¤ºã™å€¤ã‚’å–ã‚Šå‡ºã™
         int val = *iter;
 
-        // min_value ¤ÈÈæ³Ó¤¹¤ë
+        // min_value ã¨æ¯”è¼ƒã™ã‚‹
         if (a[i] + val < min_value) {
             min_value = a[i] + val;
         }

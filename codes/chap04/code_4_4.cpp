@@ -2,14 +2,14 @@
 using namespace std;
 
 int GCD(int m, int n) {
-    // ¥Ù¡¼¥¹¥±¡¼¥¹
+    // ãƒ™ãƒ¼ã‚¹ã‚±ãƒ¼ã‚¹
     if (n == 0) return m;
 
-    // ºÆµ¢¸Æ¤Ó½Ğ¤·
+    // å†å¸°å‘¼ã³å‡ºã—
     return GCD(n, m % n);
 }
 
 int main() {
-    cout << GCD(51, 15) << endl; // 3 ¤¬½ĞÎÏ¤µ¤ì¤ë
-    cout << GCD(15, 51) << endl; // 3 ¤¬½ĞÎÏ¤µ¤ì¤ë
+    cout << GCD(51, 15) << endl; // 3 ãŒå‡ºåŠ›ã•ã‚Œã‚‹
+    cout << GCD(15, 51) << endl; // 3 ãŒå‡ºåŠ›ã•ã‚Œã‚‹
 }

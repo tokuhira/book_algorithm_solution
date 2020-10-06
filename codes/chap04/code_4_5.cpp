@@ -1,8 +1,8 @@
 int fibo(int N) {
-    // •Ÿ°º•π•±°º•π
+    // „Éô„Éº„Çπ„Ç±„Éº„Çπ
     if (N == 0) return 0;
     else if (N == 1) return 1;
 
-    // ∫∆µ¢∏∆§”Ω–§∑
+    // ÂÜçÂ∏∞Âëº„Å≥Âá∫„Åó
     return fibo(N - 1) + fibo(N - 2);
 }

@@ -1,21 +1,21 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-const int INF = 20000000;   // ½½Ê¬Âç¤­¤ÊÃÍ¤Ë
+const int INF = 20000000;   // ååˆ†å¤§ããªå€¤ã«
 
 int main() {
-    // ÆþÎÏ¤ò¼õ¤±¼è¤ë
+    // å…¥åŠ›ã‚’å—ã‘å–ã‚‹
     int N;
     cin >> N;
     vector<int> a(N);
     for (int i = 0; i < N; ++i) cin >> a[i];
     
-    // Àþ·ÁÃµº÷
+    // ç·šå½¢æŽ¢ç´¢
     int min_value = INF;
     for (int i = 0; i < N; ++i) {
         if (a[i] < min_value) min_value = a[i];
     }
     
-    // ·ë²Ì½ÐÎÏ
+    // çµæžœå‡ºåŠ›
     cout << min_value << endl;
 }

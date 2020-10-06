@@ -2,20 +2,20 @@
 #include <vector>
 using namespace std;
 
-// Ìµ¸ÂÂç¤òÉ½¤¹ÃÍ
-const long long INF = 1LL << 60; // ½½Ê¬Âç¤­¤ÊÃÍ¤òÍÑ¤¤¤ë (¤³¤³¤Ç¤Ï 2^60)
+// ç„¡é™å¤§ã‚’è¡¨ã™å€¤
+const long long INF = 1LL << 60; // ååˆ†å¤§ããªå€¤ã‚’ç”¨ã„ã‚‹ (ã“ã“ã§ã¯ 2^60)
 
-// ÊÕ¤òÉ½¤¹·¿¡¤¤³¤³¤Ç¤Ï½Å¤ß¤òÉ½¤¹·¿¤ò long long ·¿¤È¤¹¤ë
+// è¾ºã‚’è¡¨ã™å‹ï¼Œã“ã“ã§ã¯é‡ã¿ã‚’è¡¨ã™å‹ã‚’ long long å‹ã¨ã™ã‚‹
 struct Edge {
-    int to; // ÎÙÀÜÄºÅÀÈÖ¹æ
-    long long w; // ½Å¤ß
+    int to; // éš£æ¥é ‚ç‚¹ç•ªå·
+    long long w; // é‡ã¿
     Edge(int to, long long w) : to(to), w(w) {}
 };
 
-// ½Å¤ßÉÕ¤­¥°¥é¥Õ¤òÉ½¤¹·¿
+// é‡ã¿ä»˜ãã‚°ãƒ©ãƒ•ã‚’è¡¨ã™å‹
 using Graph = vector<vector<Edge>>;
 
-// ´ËÏÂ¤ò¼Â»Ü¤¹¤ë´Ø¿ô
+// ç·©å’Œã‚’å®Ÿæ–½ã™ã‚‹é–¢æ•°
 template<class T> bool chmin(T& a, T b) {
     if (a > b) {
         a = b;
@@ -25,11 +25,11 @@ template<class T> bool chmin(T& a, T b) {
 }
 
 int main() {
-    // ÄºÅÀ¿ô¡¤ÊÕ¿ô¡¤»ÏÅÀ
+    // é ‚ç‚¹æ•°ï¼Œè¾ºæ•°ï¼Œå§‹ç‚¹
     int N, M, s;
     cin >> N >> M >> s;
 
-    // ¥°¥é¥Õ
+    // ã‚°ãƒ©ãƒ•
     Graph G(N);
     for (int i = 0; i < M; ++i) {
         int a, b, w;
@@ -37,12 +37,12 @@ int main() {
         G[a].push_back(Edge(b, w));
     }
 
-    // ¥À¥¤¥¯¥¹¥È¥éË¡
+    // ãƒ€ã‚¤ã‚¯ã‚¹ãƒˆãƒ©æ³•
     vector<bool> used(N, false);
     vector<long long> dist(N, INF);
     dist[s] = 0;
     for (int iter = 0; iter < N; ++iter) {
-        // ¡Ö»ÈÍÑºÑ¤ß¡×¤Ç¤Ê¤¤ÄºÅÀ¤Î¤¦¤Á¡¤dist ÃÍ¤¬ºÇ¾®¤ÎÄºÅÀ¤òÃµ¤¹
+        // ã€Œä½¿ç”¨æ¸ˆã¿ã€ã§ãªã„é ‚ç‚¹ã®ã†ã¡ï¼Œdist å€¤ãŒæœ€å°ã®é ‚ç‚¹ã‚’æ¢ã™
         long long min_dist = INF;
         int min_v = -1;
         for (int v = 0; v < N; ++v) {
@@ -52,17 +52,17 @@ int main() {
             }
         }
 
-        // ¤â¤·¤½¤Î¤è¤¦¤ÊÄºÅÀ¤¬¸«¤Ä¤«¤é¤Ê¤±¤ì¤Ğ½ªÎ»¤¹¤ë
+        // ã‚‚ã—ãã®ã‚ˆã†ãªé ‚ç‚¹ãŒè¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã°çµ‚äº†ã™ã‚‹
         if (min_v == -1) break;
 
-        // min_v ¤ò»ÏÅÀ¤È¤·¤¿³ÆÊÕ¤ò´ËÏÂ¤¹¤ë
+        // min_v ã‚’å§‹ç‚¹ã¨ã—ãŸå„è¾ºã‚’ç·©å’Œã™ã‚‹
         for (auto e : G[min_v]) {
             chmin(dist[e.to], dist[min_v] + e.w);
         }
-        used[min_v] = true; // min_v ¤ò¡Ö»ÈÍÑºÑ¤ß¡×¤È¤¹¤ë
+        used[min_v] = true; // min_v ã‚’ã€Œä½¿ç”¨æ¸ˆã¿ã€ã¨ã™ã‚‹
     }
 
-    // ·ë²Ì½ĞÎÏ
+    // çµæœå‡ºåŠ›
     for (int v = 0; v < N; ++v) {
         if (dist[v] < INF) cout << dist[v] << endl;
         else cout << "INF" << endl;

@@ -3,35 +3,35 @@
 #include <vector>
 using namespace std;
 
-// Ϣ��ꥹ�ȤγƥΡ��ɤ�ɽ����¤��
+// 連結リストの各ノードを表す構造体
 struct Node {
     Node *prev, *next;
-    string name; // �Ρ��ɤ��տ路�Ƥ�����
+    string name; // ノードに付随している値
 
     Node(string name_ = "") :
     prev(NULL), next(NULL), name(name_) { }
 };
 
-// ��ʼ��ɽ���Ρ��ɤ򥰥����Х��ΰ���֤��Ƥ���
+// 番兵を表すノードをグローバル領域に置いておく
 Node* nil;
 
-// �����
+// 初期化
 void init() {
     nil = new Node();
     nil->prev = nil; 
     nil->next = nil;
 }
 
-// Ϣ��ꥹ�Ȥ���Ϥ���
+// 連結リストを出力する
 void printList() {
-    Node* cur = nil->next; // ��Ƭ�����ȯ
+    Node* cur = nil->next; // 先頭から出発
     for (; cur != nil; cur = cur->next) {
         cout << cur->name << " -> ";
     }
     cout << endl;
 }
 
-// �Ρ��� p ��ľ��˥Ρ��� v ����������
+// ノード p の直後にノード v を挿入する
 void insert(Node* v, Node* p = nil) {
     v->next = p->next;
     p->next->prev = v;
@@ -39,20 +39,20 @@ void insert(Node* v, Node* p = nil) {
     v->prev = p;
 }
 
-// �Ρ��� v ��������
+// ノード v を削除する
 void erase(Node *v) {
-    if (v == nil) return; // v ����ʼ�ξ��ϲ��⤷�ʤ�
+    if (v == nil) return; // v が番兵の場合は何もしない
     v->prev->next = v->next;
     v->next->prev = v->prev;
-    delete v; // �������
+    delete v; // メモリを開放
 }
 
 int main() {
-    // �����
+    // 初期化
     init();
 
-    // ��ꤿ���Ρ��ɤ�̾���ΰ���
-    // �Ǹ����ΥΡ��� (�ֻ��ܡ�) �������������뤳�Ȥ�����
+    // 作りたいノードの名前の一覧
+    // 最後尾のノード (「山本」) から順に挿入することに注意
     vector<string> names = {"yamamoto",
                             "watanabe",
                             "ito",
@@ -60,23 +60,23 @@ int main() {
                             "suzuki",
                             "sato"};
 
-    // Ϣ��ꥹ�Ⱥ���: �ƥΡ��ɤ���������Ϣ��ꥹ�Ȥ���Ƭ���������Ƥ���
+    // 連結リスト作成: 各ノードを生成して連結リストの先頭に挿入していく
     Node *watanabe;
     for (int i = 0; i < (int)names.size(); ++i) {
-        // �Ρ��ɤ��������
+        // ノードを作成する
         Node* node = new Node(names[i]);
 
-        // ���������Ρ��ɤ�Ϣ��ꥹ�Ȥ���Ƭ����������
+        // 作成したノードを連結リストの先頭に挿入する
         insert(node);
 
-        // �����աץΡ��ɤ��ݻ����Ƥ���
+        // 「渡辺」ノードを保持しておく
         if (names[i] == "watanabe") watanabe = node;
     }
 
-    // �����աץΡ��ɤ�������
+    // 「渡辺」ノードを削除する
     cout << "before: ";
-    printList(); // ����������
+    printList(); // 削除前を出力
     erase(watanabe);
     cout << "after: ";
-    printList(); // ���������
+    printList(); // 削除後を出力
 }

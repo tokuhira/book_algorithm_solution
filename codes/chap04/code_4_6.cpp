@@ -2,15 +2,15 @@
 using namespace std;
 
 int fibo(int N) {
-    cout << "func(" << N << ") ¤ò¸Æ¤Ó½Ð¤·¤Þ¤·¤¿" << endl;
+    cout << "func(" << N << ") ã‚’å‘¼ã³å‡ºã—ã¾ã—ãŸ" << endl;
     
-    // ¥Ù¡¼¥¹¥±¡¼¥¹
+    // ãƒ™ãƒ¼ã‚¹ã‚±ãƒ¼ã‚¹
     if (N == 0) return 0;
     else if (N == 1) return 1;
 
-    // ºÆµ¢Åª¤ËÅú¤¨¤òµá¤á¤Æ½ÐÎÏ¤¹¤ë
+    // å†å¸°çš„ã«ç­”ãˆã‚’æ±‚ã‚ã¦å‡ºåŠ›ã™ã‚‹
     int result = fibo(N - 1) + fibo(N - 2);
-    cout << N << " ¹àÌÜ = " << result << endl;
+    cout << N << " é …ç›® = " << result << endl;
 
     return result;
 }

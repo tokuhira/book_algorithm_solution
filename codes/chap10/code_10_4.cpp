@@ -2,22 +2,22 @@
 #include <vector>
 using namespace std;
 
-// �����ǤϽŤߤ�ɽ������ long long ���Ȥ���
+// ここでは重みを表す型を long long 型とする
 struct Edge {
-    int to; // ����ĺ���ֹ�
-    long long w; // �Ť�
+    int to; // 隣接頂点番号
+    long long w; // 重み
     Edge(int to, long long w) : to(to), w(w) {}
 };
     
-// ��ĺ�������ܥꥹ�Ȥ��ս����ɽ��
+// 各頂点の隣接リストを，辺集合で表す
 using Graph = vector<vector<Edge>>;
 
 int main() {
-    // ĺ�������տ�
+    // 頂点数と辺数
     int N, M;
     cin >> N >> M;
 
-    // �����
+    // グラフ
     Graph G(N);
     for (int i = 0; i < M; ++i) {
         int a, b;

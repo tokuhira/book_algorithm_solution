@@ -2,18 +2,18 @@
 #include <vector>
 using namespace std;
 
-// Ìµ¸ÂÂç¤òÉ½¤¹ÃÍ
+// ç„¡é™å¤§ã‚’è¡¨ã™å€¤
 const long long INF = 1LL << 60;
 
 int main() {
-    // ÄºÅÀ¿ô¡¤ÊÕ¿ô
+    // é ‚ç‚¹æ•°ï¼Œè¾ºæ•°
     int N, M;
     cin >> N >> M;
 
-    // dp ÇÛÎó (INF ¤Ç½é´ü²½¤·¤Ş¤¹)
+    // dp é…åˆ— (INF ã§åˆæœŸåŒ–ã—ã¾ã™)
     vector<vector<long long>> dp(N, vector<long long>(N, INF));
 
-    // dp ½é´ü¾ò·ï
+    // dp åˆæœŸæ¡ä»¶
     for (int e = 0; e < M; ++e) {
         int a, b;
         long long w;
@@ -22,14 +22,14 @@ int main() {
     }
     for (int v = 0; v < N; ++v) dp[v][v] = 0;
 
-    // dp Á«°Ü (¥Õ¥í¥¤¥É¡¦¥ï¡¼¥·¥ã¥ëË¡)
+    // dp é·ç§» (ãƒ•ãƒ­ã‚¤ãƒ‰ãƒ»ãƒ¯ãƒ¼ã‚·ãƒ£ãƒ«æ³•)
     for (int k = 0; k < N; ++k)
         for (int i = 0; i < N; ++i)
             for (int j = 0; j < N; ++j)
                 dp[i][j] = min(dp[i][j], dp[i][k] + dp[k][j]);
 
-    // ·ë²Ì½ĞÎÏ
-    // ¤â¤· dp[v][v] < 0 ¤Ê¤éÉéÊÄÏ©¤¬Â¸ºß¤¹¤ë
+    // çµæœå‡ºåŠ›
+    // ã‚‚ã— dp[v][v] < 0 ãªã‚‰è² é–‰è·¯ãŒå­˜åœ¨ã™ã‚‹
     bool exist_negative_cycle = false;
     for (int v = 0; v < N; ++v) {
         if (dp[v][v] < 0) exist_negative_cycle = true;

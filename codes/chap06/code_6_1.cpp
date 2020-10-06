@@ -5,11 +5,11 @@ using namespace std;
 const int N = 8;
 const vector<int> a = {3, 5, 8, 10, 14, 17, 21, 39};
 
-// ÌÜÅª¤ÎÃÍ key ¤ÎÅº»ú¤òÊÖ¤¹ (Â¸ºß¤·¤Ê¤¤¾ì¹ç¤Ï -1)
+// ç›®çš„ã®å€¤ key ã®æ·»å­—ã‚’è¿”ã™ (å­˜åœ¨ã—ãªã„å ´åˆã¯ -1)
 int binary_search(int key) {
-    int left = 0, right = (int)a.size() - 1; // ÇÛÎó a ¤Îº¸Ã¼¤È±¦Ã¼
+    int left = 0, right = (int)a.size() - 1; // é…åˆ— a ã®å·¦ç«¯ã¨å³ç«¯
     while (right >= left) {
-        int mid = left + (right - left) / 2; // ¶è´Ö¤Î¿¿¤óÃæ
+        int mid = left + (right - left) / 2; // åŒºé–“ã®çœŸã‚“ä¸­
         if (a[mid] == key) return mid;
         else if (a[mid] > key) right = mid - 1;
         else if (a[mid] < key) left = mid + 1;

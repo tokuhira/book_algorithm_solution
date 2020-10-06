@@ -1,14 +1,14 @@
 #include <iostream>
 using namespace std;
 
-// x ¤¬¾ò·ï¤òËþ¤¿¤¹¤«¤É¤¦¤«
+// x ãŒæ¡ä»¶ã‚’æº€ãŸã™ã‹ã©ã†ã‹
 bool P(int x) {
 
 }
 
-// P(x) = true ¤È¤Ê¤ëºÇ¾®¤ÎÀ°¿ô x ¤òÊÖ¤¹
+// P(x) = true ã¨ãªã‚‹æœ€å°ã®æ•´æ•° x ã‚’è¿”ã™
 int binary_search() {
-    // P(left) = False, P(right) = True ¤È¤Ê¤ë¤è¤¦¤Ë
+    // P(left) = False, P(right) = True ã¨ãªã‚‹ã‚ˆã†ã«
     int left, right; 
     
     while (right - left > 1) {

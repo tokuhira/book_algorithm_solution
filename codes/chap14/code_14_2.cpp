@@ -2,20 +2,20 @@
 #include <vector>
 using namespace std;
 
-// Ìµ¸ÂÂç¤òÉ½¤¹ÃÍ
-const long long INF = 1LL << 60; // ½½Ê¬Âç¤­¤ÊÃÍ¤òÍÑ¤¤¤ë (¤³¤³¤Ç¤Ï 2^60)
+// ç„¡é™å¤§ã‚’è¡¨ã™å€¤
+const long long INF = 1LL << 60; // ååˆ†å¤§ããªå€¤ã‚’ç”¨ã„ã‚‹ (ã“ã“ã§ã¯ 2^60)
 
-// ÊÕ¤òÉ½¤¹·¿¡¤¤³¤³¤Ç¤Ï½Å¤ß¤òÉ½¤¹·¿¤ò long long ·¿¤È¤¹¤ë
+// è¾ºã‚’è¡¨ã™å‹ï¼Œã“ã“ã§ã¯é‡ã¿ã‚’è¡¨ã™å‹ã‚’ long long å‹ã¨ã™ã‚‹
 struct Edge {
-    int to; // ÎÙÀÜÄºÅÀÈÖ¹æ
-    long long w; // ½Å¤ß
+    int to; // éš£æ¥é ‚ç‚¹ç•ªå·
+    long long w; // é‡ã¿
     Edge(int to, long long w) : to(to), w(w) {}
 };
 
-// ½Å¤ßÉÕ¤­¥°¥é¥Õ¤òÉ½¤¹·¿
+// é‡ã¿ä»˜ãã‚°ãƒ©ãƒ•ã‚’è¡¨ã™å‹
 using Graph = vector<vector<Edge>>;
 
-// ´ËÏÂ¤ò¼Â»Ü¤¹¤ë´Ø¿ô
+// ç·©å’Œã‚’å®Ÿæ–½ã™ã‚‹é–¢æ•°
 template<class T> bool chmin(T& a, T b) {
     if (a > b) {
         a = b;
@@ -25,11 +25,11 @@ template<class T> bool chmin(T& a, T b) {
 }
 
 int main() {
-    // ÄºÅÀ¿ô¡¤ÊÕ¿ô¡¤»ÏÅÀ
+    // é ‚ç‚¹æ•°ï¼Œè¾ºæ•°ï¼Œå§‹ç‚¹
     int N, M, s;
     cin >> N >> M >> s;
 
-    // ¥°¥é¥Õ
+    // ã‚°ãƒ©ãƒ•
     Graph G(N);
     for (int i = 0; i < M; ++i) {
         int a, b, w;
@@ -37,32 +37,32 @@ int main() {
         G[a].push_back(Edge(b, w));
     }
 
-    // ¥Ù¥ë¥Ş¥ó¡¦¥Õ¥©¡¼¥ÉË¡
-    bool exist_negative_cycle = false; // ÉéÊÄÏ©¤ò¤â¤Ä¤«¤É¤¦¤«
+    // ãƒ™ãƒ«ãƒãƒ³ãƒ»ãƒ•ã‚©ãƒ¼ãƒ‰æ³•
+    bool exist_negative_cycle = false; // è² é–‰è·¯ã‚’ã‚‚ã¤ã‹ã©ã†ã‹
     vector<long long> dist(N, INF);
     dist[s] = 0;
     for (int iter = 0; iter < N; ++iter) {
-        bool update = false; // ¹¹¿·¤¬È¯À¸¤·¤¿¤«¤É¤¦¤«¤òÉ½¤¹¥Õ¥é¥°
+        bool update = false; // æ›´æ–°ãŒç™ºç”Ÿã—ãŸã‹ã©ã†ã‹ã‚’è¡¨ã™ãƒ•ãƒ©ã‚°
         for (int v = 0; v < N; ++v) {
-            // dist[v] = INF ¤Î¤È¤­¤ÏÄºÅÀ v ¤«¤é¤Î´ËÏÂ¤ò¹Ô¤ï¤Ê¤¤
+            // dist[v] = INF ã®ã¨ãã¯é ‚ç‚¹ v ã‹ã‚‰ã®ç·©å’Œã‚’è¡Œã‚ãªã„
             if (dist[v] == INF) continue;
             
             for (auto e : G[v]) {
-                // ´ËÏÂ½èÍı¤ò¹Ô¤¤¡¤¹¹¿·¤µ¤ì¤¿¤é update ¤ò true ¤Ë¤¹¤ë
+                // ç·©å’Œå‡¦ç†ã‚’è¡Œã„ï¼Œæ›´æ–°ã•ã‚ŒãŸã‚‰ update ã‚’ true ã«ã™ã‚‹
                 if (chmin(dist[e.to], dist[v] + e.w)) {
                     update = true;
                 }
             }
         }
 
-        // ¹¹¿·¤¬¹Ô¤ï¤ì¤Ê¤«¤Ã¤¿¤é¡¤¤¹¤Ç¤ËºÇÃ»Ï©¤¬µá¤á¤é¤ì¤Æ¤¤¤ë
+        // æ›´æ–°ãŒè¡Œã‚ã‚Œãªã‹ã£ãŸã‚‰ï¼Œã™ã§ã«æœ€çŸ­è·¯ãŒæ±‚ã‚ã‚‰ã‚Œã¦ã„ã‚‹
         if (!update) break;
 
-        // N ²óÌÜ¤ÎÈ¿Éü¤Ç¹¹¿·¤¬¹Ô¤ï¤ì¤¿¤Ê¤é¤Ğ¡¤ÉéÊÄÏ©¤ò¤â¤Ä
+        // N å›ç›®ã®åå¾©ã§æ›´æ–°ãŒè¡Œã‚ã‚ŒãŸãªã‚‰ã°ï¼Œè² é–‰è·¯ã‚’ã‚‚ã¤
         if (iter == N - 1 && update) exist_negative_cycle = true;
     }
 
-    // ·ë²Ì½ĞÎÏ
+    // çµæœå‡ºåŠ›
     if (exist_negative_cycle) cout << "NEGATIVE CYCLE" << endl;
     else {
         for (int v = 0; v < N; ++v) {

@@ -3,30 +3,30 @@
 using namespace std;
 
 bool func(int i, int w, const vector<int> &a) {
-    // ¥Ù¡¼¥¹¥±¡¼¥¹
+    // ãƒ™ãƒ¼ã‚¹ã‚±ãƒ¼ã‚¹
     if (i == 0) {
         if (w == 0) return true;
         else return false;
     }
 
-    // a[i - 1] ¤òÁª¤Ğ¤Ê¤¤¾ì¹ç
+    // a[i - 1] ã‚’é¸ã°ãªã„å ´åˆ
     if (func(i - 1, w, a)) return true;
 
-    // a[i - 1] ¤ò¤Ö¾ì¹ç
+    // a[i - 1] ã‚’ã¶å ´åˆ
     if (func(i - 1, w - a[i - 1], a)) return true;
 
-    // ¤É¤Á¤é¤â false ¤Î¾ì¹ç¤Ï false
+    // ã©ã¡ã‚‰ã‚‚ false ã®å ´åˆã¯ false
     return false;
 }
 
 int main() {
-    // ÆşÎÏ
+    // å…¥åŠ›
     int N, W;
     cin >> N >> W;
     vector<int> a(N);
     for (int i = 0; i < N; ++i) cin >> a[i];
 
-    // ºÆµ¢Åª¤Ë²ò¤¯
+    // å†å¸°çš„ã«è§£ã
     if (func(N, W, a)) cout << "Yes" << endl;
     else cout << "No" << endl;
 }

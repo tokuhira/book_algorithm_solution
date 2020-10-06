@@ -1,6 +1,6 @@
 struct Node {
     Node *prev, *next;
-    string name; // ¥Î¡¼¥É¤ËÉÕ¿ï¤·¤Æ¤¤¤ëÃÍ
+    string name; // ãƒãƒ¼ãƒ‰ã«ä»˜éšã—ã¦ã„ã‚‹å€¤
 
     Node(string name_ = "") :
     prev(NULL), next(NULL), name(name_) { }

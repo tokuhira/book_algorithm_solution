@@ -1,30 +1,30 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-const int INF = 20000000;   // ½½Ê¬Âç¤­¤ÊÃÍ¤Ë
+const int INF = 20000000;   // ååˆ†å¤§ããªå€¤ã«
 
 int main() {
-    // ÆþÎÏ¤ò¼õ¤±¼è¤ë
+    // å…¥åŠ›ã‚’å—ã‘å–ã‚‹
     int N, K;
     cin >> N >> K;
     vector<int> a(N), b(N);
     for (int i = 0; i < N; ++i) cin >> a[i];
     for (int i = 0; i < N; ++i) cin >> b[i];
     
-    // Àþ·ÁÃµº÷
+    // ç·šå½¢æŽ¢ç´¢
     int min_value = INF;
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < N; ++j) {
-            // ÏÂ¤¬ K Ì¤Ëþ¤Î¾ì¹ç¤Ï¥¹¥­¥Ã¥×
+            // å’ŒãŒ K æœªæº€ã®å ´åˆã¯ã‚¹ã‚­ãƒƒãƒ—
             if (a[i] + b[j] < K) continue;
 
-            // ºÇ¾®ÃÍ¤ò¹¹¿·
+            // æœ€å°å€¤ã‚’æ›´æ–°
             if (a[i] + b[j] < min_value) {
                 min_value = a[i] + b[j];
             }
         }
     }
     
-    // ·ë²Ì½ÐÎÏ
+    // çµæžœå‡ºåŠ›
     cout << min_value << endl;
 }

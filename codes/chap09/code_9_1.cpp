@@ -1,24 +1,24 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-const int MAX = 100000; // ¥¹¥¿¥Ã¥¯ÇÛÎó¤ÎºÇÂç¥µ¥¤¥º
+const int MAX = 100000; // ã‚¹ã‚¿ãƒƒã‚¯é…åˆ—ã®æœ€å¤§ã‚µã‚¤ã‚º
 
-int st[MAX]; // ¥¹¥¿¥Ã¥¯¤òÉ½¤¹ÇÛÎó
-int top = 0; // ¥¹¥¿¥Ã¥¯¤ÎÀèÆ¬¤òÉ½¤¹Åº»ú
+int st[MAX]; // ã‚¹ã‚¿ãƒƒã‚¯ã‚’è¡¨ã™é…åˆ—
+int top = 0; // ã‚¹ã‚¿ãƒƒã‚¯ã®å…ˆé ­ã‚’è¡¨ã™æ·»å­—
 
-// ¥¹¥¿¥Ã¥¯¤ò½é´ü²½¤¹¤ë
+// ã‚¹ã‚¿ãƒƒã‚¯ã‚’åˆæœŸåŒ–ã™ã‚‹
 void init() {
-    top = 0; // ¥¹¥¿¥Ã¥¯¤ÎÅº»ú¤ò½é´ü°ÌÃÖ¤Ë
+    top = 0; // ã‚¹ã‚¿ãƒƒã‚¯ã®æ·»å­—ã‚’åˆæœŸä½ç½®ã«
 }
 
-// ¥¹¥¿¥Ã¥¯¤¬¶õ¤«¤É¤¦¤«¤òÈ½Äê¤¹¤ë
+// ã‚¹ã‚¿ãƒƒã‚¯ãŒç©ºã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹
 bool isEmpty() {
-    return (top == 0); // ¥¹¥¿¥Ã¥¯¥µ¥¤¥º¤¬ 0 ¤«¤É¤¦¤«
+    return (top == 0); // ã‚¹ã‚¿ãƒƒã‚¯ã‚µã‚¤ã‚ºãŒ 0 ã‹ã©ã†ã‹
 }
 
-// ¥¹¥¿¥Ã¥¯¤¬ËþÇÕ¤«¤É¤¦¤«¤òÈ½Äê¤¹¤ë
+// ã‚¹ã‚¿ãƒƒã‚¯ãŒæº€æ¯ã‹ã©ã†ã‹ã‚’åˆ¤å®šã™ã‚‹
 bool isFull() {
-    return (top == MAX); // ¥¹¥¿¥Ã¥¯¥µ¥¤¥º¤¬ MAX ¤«¤É¤¦¤«
+    return (top == MAX); // ã‚¹ã‚¿ãƒƒã‚¯ã‚µã‚¤ã‚ºãŒ MAX ã‹ã©ã†ã‹
 }
 
 // push
@@ -27,8 +27,8 @@ void push(int x) {
         cout << "error: stack is full." << endl;
         return;
     }
-    st[top] = x; // x ¤ò³ÊÇ¼¤·¤Æ
-    ++top; // top ¤ò¿Ê¤á¤ë
+    st[top] = x; // x ã‚’æ ¼ç´ã—ã¦
+    ++top; // top ã‚’é€²ã‚ã‚‹
 }
 
 // pop
@@ -37,19 +37,19 @@ int pop() {
         cout << "error: stack is empty." << endl;
         return -1;
     }
-    --top; // top ¤ò¥Ç¥¯¥ê¥á¥ó¥È¤·¤Æ
-    return st[top]; // top ¤Î°ÌÃÖ¤Ë¤¢¤ëÍ×ÁÇ¤òÊÖ¤¹
+    --top; // top ã‚’ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆã—ã¦
+    return st[top]; // top ã®ä½ç½®ã«ã‚ã‚‹è¦ç´ ã‚’è¿”ã™
 }
 
 int main() {
-    init(); // ¥¹¥¿¥Ã¥¯¤ò½é´ü²½
+    init(); // ã‚¹ã‚¿ãƒƒã‚¯ã‚’åˆæœŸåŒ–
 
-    push(3); // ¥¹¥¿¥Ã¥¯¤Ë 3 ¤òÁÞÆþ¤¹¤ë {} -> {3}
-    push(5); // ¥¹¥¿¥Ã¥¯¤Ë 5 ¤òÁÞÆþ¤¹¤ë {3} -> {3, 5}
-    push(7); // ¥¹¥¿¥Ã¥¯¤Ë 7 ¤òÁÞÆþ¤¹¤ë {3, 5} -> {3, 5, 7}
+    push(3); // ã‚¹ã‚¿ãƒƒã‚¯ã« 3 ã‚’æŒ¿å…¥ã™ã‚‹ {} -> {3}
+    push(5); // ã‚¹ã‚¿ãƒƒã‚¯ã« 5 ã‚’æŒ¿å…¥ã™ã‚‹ {3} -> {3, 5}
+    push(7); // ã‚¹ã‚¿ãƒƒã‚¯ã« 7 ã‚’æŒ¿å…¥ã™ã‚‹ {3, 5} -> {3, 5, 7}
 
-    cout << pop() << endl; // {3, 5, 7} -> {3, 5} ¤Ç 7 ¤ò½ÐÎÏ
-    cout << pop() << endl; // {3, 5} -> {3} ¤Ç 5 ¤ò½ÐÎÏ
+    cout << pop() << endl; // {3, 5, 7} -> {3, 5} ã§ 7 ã‚’å‡ºåŠ›
+    cout << pop() << endl; // {3, 5} -> {3} ã§ 5 ã‚’å‡ºåŠ›
 
-    push(9); // ¿·¤¿¤Ë 9 ¤òÁÞÆþ¤¹¤ë {3} -> {3, 9}
+    push(9); // æ–°ãŸã« 9 ã‚’æŒ¿å…¥ã™ã‚‹ {3} -> {3, 9}
 }

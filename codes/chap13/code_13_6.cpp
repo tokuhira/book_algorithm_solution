@@ -4,40 +4,40 @@
 using namespace std;
 using Graph = vector<vector<int>>;
 
-// ¥È¥İ¥í¥¸¥«¥ë¥½¡¼¥È¤¹¤ë
+// ãƒˆãƒãƒ­ã‚¸ã‚«ãƒ«ã‚½ãƒ¼ãƒˆã™ã‚‹
 vector<bool> seen;
-vector<int> order; // ¥È¥İ¥í¥¸¥«¥ë¥½¡¼¥È½ç¤òÉ½¤¹
+vector<int> order; // ãƒˆãƒãƒ­ã‚¸ã‚«ãƒ«ã‚½ãƒ¼ãƒˆé †ã‚’è¡¨ã™
 void rec(const Graph &G, int v) {
     seen[v] = true;
     for (auto next_v : G[v]) {
-        if (seen[next_v]) continue; // ¤¹¤Ç¤ËË¬ÌäºÑ¤ß¤Ê¤éÃµº÷¤·¤Ê¤¤
+        if (seen[next_v]) continue; // ã™ã§ã«è¨ªå•æ¸ˆã¿ãªã‚‰æ¢ç´¢ã—ãªã„
         rec(G, next_v);
     }
 
-    // v-out ¤òµ­Ï¿¤¹¤ë
+    // v-out ã‚’è¨˜éŒ²ã™ã‚‹
     order.push_back(v);
 }
 
 int main() {
     int N, M;
-    cin >> N >> M; // ÄºÅÀ¿ô¤È»Ş¿ô
-    Graph G(N); // ÄºÅÀ¿ô N ¤Î¥°¥é¥Õ
+    cin >> N >> M; // é ‚ç‚¹æ•°ã¨ææ•°
+    Graph G(N); // é ‚ç‚¹æ•° N ã®ã‚°ãƒ©ãƒ•
     for (int i = 0; i < M; ++i) {
         int a, b;
         cin >> a >> b;
         G[a].push_back(b);
     }
 
-    // Ãµº÷
-    seen.assign(N, false); // ½é´ü¾õÂÖ¤Ç¤ÏÁ´ÄºÅÀ¤¬Ì¤Ë¬Ìä
-    order.clear(); // ¥È¥İ¥í¥¸¥«¥ë¥½¡¼¥È½ç
+    // æ¢ç´¢
+    seen.assign(N, false); // åˆæœŸçŠ¶æ…‹ã§ã¯å…¨é ‚ç‚¹ãŒæœªè¨ªå•
+    order.clear(); // ãƒˆãƒãƒ­ã‚¸ã‚«ãƒ«ã‚½ãƒ¼ãƒˆé †
     for (int v = 0; v < N; ++v) {
-        if (seen[v]) continue; // ¤¹¤Ç¤ËË¬ÌäºÑ¤ß¤Ê¤éÃµº÷¤·¤Ê¤¤
+        if (seen[v]) continue; // ã™ã§ã«è¨ªå•æ¸ˆã¿ãªã‚‰æ¢ç´¢ã—ãªã„
         rec(G, v);
     }
-    reverse(order.begin(), order.end()); // µÕ½ç¤Ë
+    reverse(order.begin(), order.end()); // é€†é †ã«
 
-    // ½ĞÎÏ
+    // å‡ºåŠ›
     for (auto v : order) cout << v << " -> ";
     cout << endl;
 }

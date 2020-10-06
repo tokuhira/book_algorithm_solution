@@ -3,46 +3,46 @@
 #include <vector>
 using namespace std;
 
-// Ϣ��ꥹ�ȤγƥΡ��ɤ�ɽ����¤��
+// 連結リストの各ノードを表す構造体
 struct Node {
-    Node* next; // �����ɤΥΡ��ɤ�ؤ���
-    string name; // �Ρ��ɤ��տ路�Ƥ�����
+    Node* next; // 次がどのノードを指すか
+    string name; // ノードに付随している値
 
     Node(string name_ = "") : next(NULL), name(name_) { }
 };
 
-// ��ʼ��ɽ���Ρ��ɤ򥰥����Х��ΰ���֤��Ƥ���
+// 番兵を表すノードをグローバル領域に置いておく
 Node* nil;
 
-// �����
+// 初期化
 void init() {
     nil = new Node();
-    nil->next = nil; // ������֤Ǥ� nil �� nil ��ؤ��褦�ˤ���
+    nil->next = nil; // 初期状態では nil が nil を指すようにする
 }
 
-// Ϣ��ꥹ�Ȥ���Ϥ���
+// 連結リストを出力する
 void printList() {
-    Node* cur = nil->next; // ��Ƭ�����ȯ
+    Node* cur = nil->next; // 先頭から出発
     for (; cur != nil; cur = cur->next) {
         cout << cur->name << " -> ";
     }
     cout << endl;
 }
 
-// �Ρ��� p ��ľ��˥Ρ��� v ����������
-// �Ρ��� p �Υǥե���Ȱ����� nil �Ȥ��Ƥ���
-// ���Τ��� insert(v) ��ƤӽФ����ϡ��ꥹ�Ȥ���Ƭ�ؤ�������ɽ��
+// ノード p の直後にノード v を挿入する
+// ノード p のデフォルト引数を nil としておく
+// そのため insert(v) を呼び出す操作は，リストの先頭への挿入を表す
 void insert(Node* v, Node* p = nil) {
     v->next = p->next;
     p->next = v;
 }
 
 int main() {
-    // �����
+    // 初期化
     init();
 
-    // ��ꤿ���Ρ��ɤ�̾���ΰ���
-    // �Ǹ����ΥΡ��� (�ֻ��ܡ�) �������������뤳�Ȥ�����
+    // 作りたいノードの名前の一覧
+    // 最後尾のノード (「山本」) から順に挿入することに注意
     vector<string> names = {"yamamoto",
                             "watanabe",
                             "ito",
@@ -50,15 +50,15 @@ int main() {
                             "suzuki",
                             "sato"};
 
-    // �ƥΡ��ɤ��������ơ�Ϣ��ꥹ�Ȥ���Ƭ���������Ƥ���
+    // 各ノードを生成して，連結リストの先頭に挿入していく
     for (int i = 0; i < (int)names.size(); ++i) {
-        // �Ρ��ɤ��������
+        // ノードを作成する
         Node* node = new Node(names[i]);
 
-        // ���������Ρ��ɤ�Ϣ��ꥹ�Ȥ���Ƭ����������
+        // 作成したノードを連結リストの先頭に挿入する
         insert(node);
 
-        // �ƥ��ƥåפ�Ϣ��ꥹ�Ȥ��ͻҤ���Ϥ���
+        // 各ステップの連結リストの様子を出力する
         cout << "step " << i << ": ";
         printList();
     }

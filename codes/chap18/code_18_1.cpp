@@ -4,23 +4,23 @@
 using namespace std;
 using Graph = vector<vector<int>>;
 
-// ÆşÎÏ
-int N; // ÄºÅÀ¿ô
-vector<long long> w; // ³ÆÄºÅÀ¤Î½Å¤ß
-Graph G; // ¥°¥é¥Õ
+// å…¥åŠ›
+int N; // é ‚ç‚¹æ•°
+vector<long long> w; // å„é ‚ç‚¹ã®é‡ã¿
+Graph G; // ã‚°ãƒ©ãƒ•
 
-// ÌÚ¾å¤ÎÆ°Åª·×²èË¡¥Æ¡¼¥Ö¥ë
+// æœ¨ä¸Šã®å‹•çš„è¨ˆç”»æ³•ãƒ†ãƒ¼ãƒ–ãƒ«
 vector<int> dp1, dp2;
 
 void dfs(int v, int p = -1) {
-    // ºÇ½é¤Ë³Æ»ÒÄºÅÀ¤òÃµº÷¤·¤Æ¤ª¤­¤Ş¤¹
+    // æœ€åˆã«å„å­é ‚ç‚¹ã‚’æ¢ç´¢ã—ã¦ãŠãã¾ã™
     for (auto ch : G[v]) {
         if (ch == p) continue;
         dfs(ch, v);
     }
 
-    // µ¢¤ê¤¬¤±»ş¤ËÆ°Åª·×²èË¡
-    dp1[v] = 0, dp2[v] = w[v]; // ½é´ü¾ò·ï
+    // å¸°ã‚ŠãŒã‘æ™‚ã«å‹•çš„è¨ˆç”»æ³•
+    dp1[v] = 0, dp2[v] = w[v]; // åˆæœŸæ¡ä»¶
     for (auto ch : G[v]) {
         if (ch == p) continue;
         dp1[v] += max(dp1[ch], dp2[ch]);
@@ -29,10 +29,10 @@ void dfs(int v, int p = -1) {
 }
 
 int main() {
-    // ÄºÅÀ¿ô (ÌÚ¤Ê¤Î¤ÇÊÕ¿ô¤Ï N - 1 ¤Ç³ÎÄê)
+    // é ‚ç‚¹æ•° (æœ¨ãªã®ã§è¾ºæ•°ã¯ N - 1 ã§ç¢ºå®š)
     cin >> N;
 
-    // ½Å¤ß¤È¥°¥é¥Õ¤ÎÆşÎÏ¼õ¼è
+    // é‡ã¿ã¨ã‚°ãƒ©ãƒ•ã®å…¥åŠ›å—å–
     w.resize(N);
     for (int i = 0; i < N; ++i) cin >> w[i];
     G.clear(); G.resize(N);
@@ -43,11 +43,11 @@ int main() {
         G[b].push_back(a);
     }
 
-    // Ãµº÷
-    int root = 0; // ²¾¤ËÄºÅÀ 0 ¤òº¬¤È¤¹¤ë
+    // æ¢ç´¢
+    int root = 0; // ä»®ã«é ‚ç‚¹ 0 ã‚’æ ¹ã¨ã™ã‚‹
     dp1.assign(N, 0), dp2.assign(N, 0);
     dfs(root);
 
-    // ·ë²Ì
+    // çµæœ
     cout << max(dp1[root], dp2[root]) << endl;
 }
