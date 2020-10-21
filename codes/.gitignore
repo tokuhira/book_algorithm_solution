@@ -6,5 +6,5 @@
 auto-save-list
 .\#*
 
-# a part of CommonList.gitignore
+# a part of CommonLisp.gitignore
 *.fasl
