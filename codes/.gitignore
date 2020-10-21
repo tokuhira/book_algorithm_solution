@@ -1,1 +1,10 @@
 /build/
+
+# a part of Emacs.gitignore
+*~
+\#*\#
+auto-save-list
+.\#*
+
+# a part of CommonList.gitignore
+*.fasl
