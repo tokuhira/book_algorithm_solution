@@ -1,5 +1,5 @@
 (defun fibo (N)
-  (format t "func(~S) を呼び出しました~%" N)
+  (format t "fibo(~S) を呼び出しました~%" N)
 
   ;; ベースケース
   (cond ((= N 0) 0)
