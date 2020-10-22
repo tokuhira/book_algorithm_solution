@@ -2,8 +2,8 @@
 using namespace std;
 
 int fibo(int N) {
-    cout << "func(" << N << ") を呼び出しました" << endl;
-    
+    cout << "fibo(" << N << ") を呼び出しました" << endl;
+
     // ベースケース
     if (N == 0) return 0;
     else if (N == 1) return 1;
