@@ -43,7 +43,7 @@ for (my $i = 0; $i <= length $S; ++$i) {
     }
 }
 
-# DB テーブル確認
+# DP テーブル確認
 #use Data::Dumper::Concise;
 #warn Dumper $dp;
 
