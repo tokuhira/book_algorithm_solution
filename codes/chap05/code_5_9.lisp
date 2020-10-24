@@ -21,16 +21,15 @@
       ;; DPループ
       (loop for i to N
 	 do (loop for j below i
+	       if (> (aref dp i)
+		     (+ (aref dp j) (aref c j i)))
 	       do (setf (aref dp i)
-			(min
-			 (aref dp i)
-			 (+ (aref dp j) (aref c j i))))))
+			(+ (aref dp j) (aref c j i)))))
 
       ;; スコア表と DP テーブル確認
       ;(print c *error-output*)
       ;(print dp *error-output*)
       ;(print nil *error-output*)
-      
 
       ;; 最適値の出力
       (princ (aref dp N))
