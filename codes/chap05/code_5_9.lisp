@@ -29,7 +29,7 @@
       ;; スコア表と DP テーブル確認
       ;(print c *error-output*)
       ;(print dp *error-output*)
-      ;(print nil *error-output*)
+      ;(terpri *error-output*)
 
       ;; 最適値の出力
       (princ (aref dp N))
