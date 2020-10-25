@@ -5,16 +5,17 @@
 (defun binary_search (key)
   (let ((left 0) ;; 配列 a の左端
 	(right (1- (length *a*)))) ;; 配列 a の右端
-    (loop with mid
-       unless (>= right left)
-       return -1
-       do (setf mid (+ left (floor (/ (- right left) 2)))) ;; 区間の真ん中
-       if (= (aref *a* mid) key)
-       return mid
-       if (> (aref *a* mid) key)
-       do (setf right (1- mid))
-       if (< (aref *a* mid) key)
-       do (setf left (1+ mid)))))
+    (do ((mid (+ left (floor (/ (- right left) 2)))   ;; init-form 区間の真ん中
+	      (+ left (floor (/ (- right left) 2))))) ;; step-form 区間の真ん中
+	((or (< right left)                           ;; end-test 1of2
+	     (= (aref *a* mid) key))                  ;; end-test 2of2
+	 (if (< right left)                           ;; result
+	     -1                                       ;; result 1of2
+	     mid))                                    ;; resutl 2of2
+      (if (> (aref *a* mid) key)                      ;; body
+	  (setf right (1- mid)))
+      (if (< (aref *a* mid) key)
+	  (setf left (1+ mid))))))
 
 (defun main ()
   ;(print *N* *error-output*)
