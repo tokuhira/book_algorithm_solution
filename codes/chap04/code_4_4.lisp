@@ -1,11 +1,11 @@
-(defun myGCD (m n)
+(defun my-gcd (m n)
   (if (= n 0)
       m
-      (myGCD n (mod m n))))
+      (my-gcd n (mod m n))))
 
 (defun main ()
-  (format t "~S~%" (myGCD 51 15))
-  (format t "~S~%" (myGCD 15 51)))
+  (format t "~S~%" (my-gcd 51 15))
+  (format t "~S~%" (my-gcd 15 51)))
 
 (main)
 

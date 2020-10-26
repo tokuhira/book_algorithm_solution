@@ -1,5 +1,5 @@
 ;; 2 点 (x1, y1) と (x2, y2) との距離を求める関数
-(defun calc_dist (x1 y1 x2 y2)
+(defun calc-dist (x1 y1 x2 y2)
   (sqrt (+ (* (- x1 x2) (- x1 x2)) (* (- y1 y2) (- y1 y2)))))
 
 (defun main ()
@@ -19,7 +19,7 @@
       (loop for i below N
 	 do (loop for j from (+ i 1) below N
 	       do (let ((dist_i_j
-			 (calc_dist
+			 (calc-dist
 			  (aref x i) (aref y i)
 			  (aref x j) (aref y j))))
 		    (if (< dist_i_j minimum_dist)
