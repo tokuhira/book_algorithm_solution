@@ -8,3 +8,6 @@ auto-save-list
 
 # a part of CommonLisp.gitignore
 *.fasl
+
+# super set of JetBrains.gitignore
+.idea/
