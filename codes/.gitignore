@@ -11,3 +11,4 @@ auto-save-list
 
 # super set of JetBrains.gitignore
 .idea/
+_Deparsed_XSubs.pm
