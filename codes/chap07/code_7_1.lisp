@@ -5,7 +5,7 @@
      for i below (length a)
      sum
        ;; 枚数制限がない場合の枚数
-       (let ((add) (floor X (aref *value* i)))
+       (let ((add (floor X (aref *value* i))))
 
 	 ;; 枚数制限を考慮
 	 (if (> add (aref a i))
