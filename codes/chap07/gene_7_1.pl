@@ -20,7 +20,7 @@ print $coin{$_} . "\n" for @type;
 # 最小支払い枚数を調べる
 use constant INF => 1 << 29;    # 十分大きな値 (ここでは 2^29 とする)
 sub chmin (\[$]$) { ${ $_[0] } = $_[1] if ${ $_[0] } > $_[1] }
-my @coin = map { ($_) x $coin{$_} } @type;                    # コインを枚数分展開iする
+my @coin = map { ($_) x $coin{$_} } @type;                    # コインを枚数分展開する
 my $n    = @coin;                                             # コインの枚数
 my $dp   = [ map { [ (INF) x ( $X + 1 ) ] } ( 0 .. $n ) ];    # コインの枚数と支払い金額の DP テーブル
 $dp->[0]->[0] = 0;                                            # 部分和の初期条件
