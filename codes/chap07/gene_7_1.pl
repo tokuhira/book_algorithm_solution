@@ -15,7 +15,7 @@ print "$X\n";
 
 # 支払いの自由度を上げるため枚数を追加して出力
 $a{$_} += num_plus for @type;
-print $a{$_} . "\n" for @type;
+print "@a{@type}\n";
 
 # 最小支払い枚数を調べる
 use constant INF => 1 << 29;    # 十分大きな値 (ここでは 2^29 とする)

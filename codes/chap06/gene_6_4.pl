@@ -6,5 +6,5 @@ sub b_val { int(rand(100)) }
 chomp(my $N = <STDIN>);
 print "$N\n";
 print K_val . "\n";
-print a_val . "\n" for 1 .. $N;
-print b_val . "\n" for 1 .. $N;
+print join(" ", map { a_val } 1 .. $N) . "\n";
+print join(" ", map { b_val } 1 .. $N) . "\n";
