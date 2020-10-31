@@ -2,6 +2,19 @@
 use strict;
 use warnings FATAL => 'all';
 
+# 簡易トークンリーダを返す関数 (入力データの改行有無に依存しないようにするため)
+sub token_reader (*) {
+    my ($handle) = @_;
+    my @fifo = ();
+    return sub {
+        unless (@fifo) {
+            chomp( my $line = <$handle> );
+            @fifo = split /\s+/, $line;
+        }
+        return shift @fifo;
+    };
+}
+
 # 2 点 (x1, y1) と (x2, y2) との距離を求める関数
 sub calc_dist {
     my ( $x1, $y1, $x2, $y2 ) = @_;
@@ -38,16 +51,3 @@ for ( my $i = 0 ; $i < $N ; ++$i ) {
 
 # 答えを出力する
 print "$minimum_dist\n";
-
-# 簡易トークンリーダを返す関数 (入力データの改行有無に依存しないようにするため)
-sub token_reader (*) {
-    my ($handle) = @_;
-    my @fifo = ();
-    return sub {
-        unless (@fifo) {
-            chomp( my $line = <$handle> );
-            @fifo = split /\s+/, $line;
-        }
-        return shift @fifo;
-    };
-}
