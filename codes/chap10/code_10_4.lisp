@@ -1,4 +1,4 @@
-(defstruct Edge
+(defstruct edge
   (to) ;; 隣接頂点番号
   (w)) ;; 重み
 
@@ -16,7 +16,7 @@
        do (let ((a (read))
 		(b (read))
 		(w (read)))
-	    (vector-push-extend (make-Edge :to b :w w) (aref G a))))
+	    (vector-push-extend (make-edge :to b :w w) (aref G a))))
 
     ;; デバッグ出力
     ;(princ G *error-output*)
