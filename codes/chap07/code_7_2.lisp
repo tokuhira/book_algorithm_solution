@@ -13,7 +13,7 @@
        with current-end-time = 0
        ;; 最後に選んだ区間と被るのは除く
        unless (< (interval-first i) current-end-time)
-       do (progn (setf res (1+ res))
+       do (progn (incf res)
 		 (setf current-end-time (interval-second i))))
     res))
 

@@ -22,7 +22,7 @@
      (format t "error: stack is full.~%"))
     (t
      (setf (aref *st* *top*) x) ;; x を格納して
-     (setf *top* (1+ *top*))))) ;; top を進める
+     (incf *top*)))) ;; top を進める
 
 ;; pop
 (defun my-pop ()
@@ -31,7 +31,7 @@
      (format t "error: stack is empty.~%")
      -1)
     (t
-     (setf *top* (1- *top*)) ;; top をデクリメントして
+     (decf *top*) ;; top をデクリメントして
      (aref *st* *top*)))) ;; top の位置にある要素を返す
 
 (defun main ()

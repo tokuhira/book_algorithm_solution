@@ -23,7 +23,7 @@
          (format t "error: queue is full.~%"))
 	(t
 	 (setf (aref *qu* *tail*) x)
-	 (setf *tail* (1+ *tail*))
+	 (incf *tail*)
 	 (if (= *tail* +MAX+)
 	     (setf *tail* 0))))) ;; リングバッファの終端に来たら 0 に
 
@@ -34,7 +34,7 @@
          -1)
 	(t
 	 (let ((res (aref *qu* *head*)))
-	   (setf *head* (1+ *head*))
+	   (incf *head*)
 	   (if (= *head* +MAX+)
 	       (setf *head* 0)) ;; リングバッファの終端に来たら 0 に
 	   res))))
