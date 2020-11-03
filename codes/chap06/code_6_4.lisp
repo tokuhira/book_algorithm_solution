@@ -6,7 +6,7 @@
 	(mid))
     (loop
        (if (< right left) (return left)) ;; binary-search での -1 と異なり、left を返す
-       (setf mid (+ left (floor (/ (- right left) 2)))) ;; 区間の真ん中
+       (setf mid (+ left (floor (- right left) 2))) ;; 区間の真ん中
        (if (= (aref v mid) key) (return mid))
        (if (> (aref v mid) key) (setf right (1- mid)))
        (if (< (aref v mid) key) (setf left (1+ mid))))))

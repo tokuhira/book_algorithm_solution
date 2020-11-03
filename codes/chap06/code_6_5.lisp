@@ -7,7 +7,7 @@
 	(mid))
     (loop
       (if (<= (- right left) 1) (return right))
-      (setf mid (floor (/ (+ left right) 2)))
+      (setf mid (floor (+ left right) 2))
 
       ;; 判定
       (let ((ok t)
