@@ -12,8 +12,7 @@
 		      (return)) ;;  v 以下になったら止める
 		  (decf j)))
 
-	  (setf (aref a j) v))) ;; 最後に j 番目に v をもってくる
-  a)
+	  (setf (aref a j) v)))) ;; 最後に j 番目に v をもってくる
 
 (defun main ()
   (let ((N) (a))
@@ -23,14 +22,7 @@
     (loop for i below N
        do (setf (aref a i) (read)))
     
-    ;(princ a *error-output*)
-    ;(terpri *error-output*)
-
     ;; 挿入ソート
-    (insertion-sort a)
-
-    ;(princ a *error-output*)
-    ;(terpri *error-output*)
-    ))
+    (insertion-sort a)))
 
 (main)
