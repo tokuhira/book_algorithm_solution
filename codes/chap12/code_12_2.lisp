@@ -2,7 +2,7 @@
 ;; [left, right) は，left, left+1, ..., right-1 番目を表す
 (defun merge-sort (a left right)
   (if (= (- right left) 1) (return-from merge-sort))
-  (format *error-output* "[~S,~S)  -> ~S~%" left right a)
+  ;(format *error-output* "[~S,~S)  -> ~S~%" left right a)
   (let ((mid (+ left (floor (- right left) 2))))
 
     ;; 左半分 [left, mid) をソート
@@ -30,7 +30,7 @@
 	     do (progn (setf (aref a i) (aref buf index-right))
 		       (decf index-right))))))
 
-  (format *error-output* "[~S,~S) <-  ~S~%" left right a)
+  ;(format *error-output* "[~S,~S) <-  ~S~%" left right a)
   )
 
 (defun main ()
