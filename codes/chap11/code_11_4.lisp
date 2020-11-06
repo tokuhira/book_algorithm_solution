@@ -25,7 +25,7 @@
   (if (= x y) (return-from union-find-unite nil))
   (if (< (aref (union-find-siz u) x)
 	 (aref (union-find-siz u) y))
-      (let ((tmp x)) (setf x y) (setf y tmp)))
+      (rotatef x y))
   (setf (aref (union-find-par u) y) x)
   (incf (aref (union-find-siz u) x)
 	(aref (union-find-siz u) y))

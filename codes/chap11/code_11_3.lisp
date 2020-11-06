@@ -31,7 +31,7 @@
   ;; union by size (y 側のサイズが小さくなるようにする)
   (if (< (aref (union-find-siz u) x)
 	 (aref (union-find-siz u) y))
-      (let ((tmp x)) (setf x y) (setf y tmp)))
+      (rotatef x y))
 
   ;; y を x の子とする
   (setf (aref (union-find-par u) y) x)
