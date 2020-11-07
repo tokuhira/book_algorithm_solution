@@ -3,8 +3,8 @@
 (defun dfs (G v)
   (setf (aref *seen* v) t) ;; v を訪問済にする
 
-  ;; 訪問した頂点を確認
-  ;(format *error-output* "v: ~S~%" v)
+  ;; 訪問した頂点を表示
+  (format *error-output* "v: ~S~%" v)
   
   ;; v から行ける各頂点 next_v について
   (loop for next_v across (aref G v)
@@ -26,18 +26,15 @@
 		(b (read)))
 	    (vector-push-extend b (aref G a))))
 
-    ;; 読み込んだグラフを確認
-    ;(format *error-output* "G: ~S~%" G)
+    ;; 読み込んだグラフを表示
+    (format *error-output* "G: ~S~%" G)
 
     ;; 探索
     (setf *seen* (make-array N :initial-element nil)) ;; 初期状態では全頂点が未訪問
     (loop for v below N
        unless (aref *seen* v) ;; すでに訪問済みなら探索しない
-       do (dfs G v))
-    
-    ;; 訪問済みフラグを確認
-    ;(format *error-output* "seen: ~S~%" *seen*)
-
-    ))
+       do (dfs G v)
+       and
+       do (format *error-output* "dsf(G, ~S): ~S~%" v *seen*)))) ;; 訪問済みフラグを表示
 
 (main)
