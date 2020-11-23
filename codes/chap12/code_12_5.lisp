@@ -23,9 +23,9 @@
     ;; a2: a をソートしたもの
     (let ((a2 (make-array N)))
       (loop for i from (1- N) downto 0
-	 do (progn (decf (aref sum (aref a i)))
-		   (setf (aref a2 (aref sum (aref a i)))
-			 (aref a i))))
+	 do (decf (aref sum (aref a i)))
+	    (setf (aref a2 (aref sum (aref a i)))
+		  (aref a i)))
 
       (setf a a2))))
 

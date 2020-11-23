@@ -5,8 +5,8 @@
     (setf A (make-array N))
     (setf B (make-array N))
     (loop for i below N
-       do (progn (setf (aref A i) (read))
-		 (setf (aref B i) (read))))
+       do (setf (aref A i) (read))
+	  (setf (aref B i) (read)))
 
     ;; 答え
     (let ((sum 0))

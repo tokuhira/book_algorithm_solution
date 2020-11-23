@@ -6,7 +6,12 @@
   (to) ;; 隣接頂点番号
   (w)) ;; 重み
 
-;; 緩和を実施する関数 (TODO: chmin はマクロを学んで実装)
+;; 緩和を実施する関数 (TODO: 非常にナイーブな実装につき改善すること)
+(defmacro chmin (a b)
+  `(if (> ,a ,b)
+       (progn (setf ,a ,b)
+	      t)
+       nil))
 
 (defun main ()
   ;; 頂点数，辺数，始点
@@ -38,12 +43,9 @@
 
 	       do (loop for e across (aref G v)
 		     ;; 緩和処理を行い，更新されたら update を true にする
-		     if (> (aref dist (edge-to e))
-			   (+ (aref dist v) (edge-w e)))
-		     do
-		       (setf (aref dist (edge-to e))
-			     (+ (aref dist v) (edge-w e)))
-		       (setf update t)))
+		     if (chmin (aref dist (edge-to e))
+			       (+ (aref dist v) (edge-w e)))
+		     do (setf update t)))
 
 	 ;; 更新が行われなかったら，すでに最短路が求められている
 	 when (not update) return 'finish

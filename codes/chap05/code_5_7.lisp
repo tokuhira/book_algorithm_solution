@@ -6,8 +6,8 @@
     (setf weight (make-array N))
     (setf value (make-array N))
     (loop for i below N
-       do (progn (setf (aref weight i) (read))
-		 (setf (aref value i) (read))))
+       do (setf (aref weight i) (read))
+	  (setf (aref value i) (read)))
 
     ;; DP テーブル定義
     (let ((dp (make-array (list (1+ N) (1+ W)) :initial-element 0)))

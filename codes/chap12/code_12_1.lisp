@@ -6,11 +6,10 @@
 	  ;; v を挿入する適切な場所 j を探す
 	  (loop
 	     while (> j 0)
-	     do (progn
-		  (if (> (aref a (1- j)) v) ;; v より大きいものは 1 つ後ろに移す
-		      (setf (aref a j) (aref a (1- j)))
-		      (return)) ;;  v 以下になったら止める
-		  (decf j)))
+	     do (if (> (aref a (1- j)) v) ;; v より大きいものは 1 つ後ろに移す
+		    (setf (aref a j) (aref a (1- j)))
+		    (return)) ;;  v 以下になったら止める
+		(decf j))
 
 	  (setf (aref a j) v)))) ;; 最後に j 番目に v をもってくる
 

@@ -9,8 +9,8 @@
     (setf x (make-array N))
     (setf y (make-array N))
     (loop for i below N
-       do (progn (setf (aref x i) (read))
-		 (setf (aref y i) (read))))
+       do (setf (aref x i) (read))
+	  (setf (aref y i) (read)))
 
     ;; 求める値を、十分大きい値で初期化しておく
     (let ((minimum_dist 100000000.0))

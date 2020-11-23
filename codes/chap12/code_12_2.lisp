@@ -22,13 +22,13 @@
 	(loop for i from left below right
 	   ;; 左側採用
 	   if (<= (aref buf index-left) (aref buf index-right))
-	     do (progn (setf (aref a i) (aref buf index-left))
-		       (incf index-left))
+	   do (setf (aref a i) (aref buf index-left))
+	      (incf index-left)
 
 	   ;; 右側採用
 	   else
-	     do (progn (setf (aref a i) (aref buf index-right))
-		       (decf index-right))))))
+	   do (setf (aref a i) (aref buf index-right))
+	      (decf index-right)))))
 
   ;(format *error-output* "[~S,~S) <-  ~S~%" left right a)
   )

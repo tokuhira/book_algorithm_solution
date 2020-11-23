@@ -11,8 +11,8 @@
     (let ((i left)) ;; i は左詰めされた pivot 未満要素の右端を表す
       (loop for j from left below (1- right)
 	 if (< (aref a j) pivot) ;; pivot 未満のものがあったら左に詰めていく
-	 do (progn (rotatef (aref a i) (aref a j))
-		   (incf i)))
+	 do (rotatef (aref a i) (aref a j))
+	    (incf i))
 
       (rotatef (aref a i) (aref a (1- right))) ;; pivot を適切な場所に挿入
 

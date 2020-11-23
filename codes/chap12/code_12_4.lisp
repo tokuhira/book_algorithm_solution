@@ -28,8 +28,8 @@
 
     ;; ステップ 2: ヒープから 1 個 1 個最大値を pop するフェーズ
     (loop for i downfrom (1- N) above 0
-       do (progn (rotatef (aref a 0) (aref a i)) ;; ヒープの最大値を左詰め
-		 (heapify a 0 i))))) ;; ヒープサイズは i に
+       do (rotatef (aref a 0) (aref a i)) ;; ヒープの最大値を左詰め
+	  (heapify a 0 i)))) ;; ヒープサイズは i に
 
 (defun main ()
   ;; 入力
