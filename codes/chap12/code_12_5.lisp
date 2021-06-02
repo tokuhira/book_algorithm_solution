@@ -14,12 +14,13 @@
     ;; num の累積和をとる
     ;; sum[v]: v 以下の値の個数
     ;; 値 a[i] が全体の中で何番目に小さいかを求める
+    (setf (aref sum 0) (aref num 0))
     (loop for v from 1 below +MAX+
        do (setf (aref sum v)
 		(+ (aref sum (1- v))
 		   (aref num v))))
 
-    ;; sum を元にソート処理
+    ;; sum をもとにソート処理
     ;; a2: a をソートしたもの
     (let ((a2 (make-array N)))
       (loop for i from (1- N) downto 0
@@ -27,7 +28,7 @@
 	    (setf (aref a2 (aref sum (aref a i)))
 		  (aref a i)))
 
-      (setf a a2))))
+      a2))) ;; 破壊的代入をする代わりに結果を返す
 
 (defun main ()
   ;; 入力
