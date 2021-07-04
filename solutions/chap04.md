@@ -76,9 +76,7 @@ int main() {
 
 ここでは省略します。次の記事でわかりやすく解説されています。ぜひ参考にしてください。
 
-
-
-+ [フィボナッチ数列の一般項と数学的帰納法 (高校数学の美しい物語)](https://mathtrain.jp/fibonacci)
+[フィボナッチ数列の一般項と数学的帰納法 (高校数学の美しい物語)](https://mathtrain.jp/fibonacci)
 
 
 
@@ -156,11 +154,11 @@ int main() {
 
 において、引数 i, w に対する答えを格納するメモ化用配列を次のように用意します。
 
+-----
 
+`memo[i][w]`  ← `func(i, w, a)` の答え
 
-- `memo[i][w]`  ← `func(i, w, a)` の答え
-
-
+-----
 
 これを用いて、次のコードのように実装できます。計算量は O(NW) となります。
 
@@ -188,7 +186,7 @@ int func(int i, int w, const vector<int> &a) {
     // a[i - 1] を選ばない場合
     if (func(i - 1, w, a)) return memo[i][w] = 1;
 
-    // a[i - 1] をぶ場合
+    // a[i - 1] を選ぶ場合
     if (func(i - 1, w - a[i - 1], a)) return memo[i][w] = 1;
 
     // どちらも false の場合は false
